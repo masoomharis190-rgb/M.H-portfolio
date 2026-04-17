@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Projects | M.H Creative Developer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap"
+        rel="stylesheet">
+
+    <style>
+        :root {
+            --primary: #7c3aed;
+            --primary-light: #a78bfa;
+            --accent: #f472b6;
+            --accent2: #38bdf8;
+            --dark: #09090f;
+            --dark2: #0f0f1a;
+            --card: #12121f;
+            --border: rgba(124, 58, 237, 0.18);
+            --light: #f1f0ff;
+            --muted: #8b8a9b;
+            --success: #34d399;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            overflow-x: hidden;
+            line-height: 1.7;
+            cursor: none;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9998;
+            opacity: 0.4;
+        }
+
+        .cursor {
+            position: fixed;
+            width: 20px;
+            height: 20px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            transform: translate(-50%, -50%);
+            transition: transform 0.1s ease;
+            box-shadow: 0 0 10px rgba(124, 58, 237, 0.5);
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .tg {
+            background: linear-gradient(135deg, var(--primary-light), var(--accent));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* HEADER */
+        #header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 18px 0;
+            transition: all 0.4s ease;
+            background: rgba(9, 9, 15, 0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+        }
+
+        #header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* LOGO WITH ICON */
+        .logo {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 800;
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: -1px;
+        }
+
+        .logo-icon {
+            width: 36px;
+            height: 36px;
+            background: linear-gradient(135deg, var(--primary), var(--accent));
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: white;
+            flex-shrink: 0;
+            box-shadow: 0 0 15px rgba(124, 58, 237, 0.4);
+        }
+
+        .logo-text {
+            display: inline-flex;
+            align-items: center;
+            gap: 1px;
+        }
+
+        .logo .m {
+            color: var(--primary-light);
+        }
+
+        .logo .dot {
+            color: var(--accent);
+            font-size: 1.8rem;
+            line-height: 1;
+        }
+
+        .logo .h {
+            color: var(--light);
+        }
+
+        .logo::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(to right, var(--primary), var(--accent));
+            border-radius: 2px;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .logo:hover::after {
+            transform: scaleX(1);
+        }
+
+        .back-btn {
+            background: none;
+            border: none;
+            color: var(--light);
+            font-size: 18px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s;
+        }
+
+        .back-btn:hover {
+            color: var(--primary);
+        }
+
+        /* SECTIONS */
+        .section-padding {
+            padding: 90px 0;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .section-label {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--primary);
+            margin-bottom: 10px;
+        }
+
+        .section-title {
+            font-family: 'Syne', sans-serif;
+            font-size: clamp(1.8rem, 4vw, 2.8rem);
+            font-weight: 800;
+            letter-spacing: -1px;
+            line-height: 1.1;
+            margin-bottom: 15px;
+        }
+
+        .section-sub {
+            color: var(--muted);
+            max-width: 600px;
+            margin: 0 auto;
+            font-size: 16px;
+        }
+
+        /* PORTFOLIO */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+        }
+
+        @media(min-width:640px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media(min-width:1024px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .project-card {
+            position: relative;
+            border-radius: 16px;
+            overflow: hidden;
+            background: var(--card);
+            border: 1px solid var(--border);
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .project-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+            border-color: var(--primary);
+        }
+
+        .proj-banner {
+            height: 200px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 20px;
+            color: white;
+        }
+
+        .proj-banner-icon {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .proj-banner-title {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin-bottom: 8px;
+        }
+
+        .proj-banner-tag {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 12px;
+            border-radius: 20px;
+        }
+
+        .proj-overlay {
+            padding: 25px;
+            background: var(--card);
+            border-top: 1px solid var(--border);
+        }
+
+        .proj-overlay h4 {
+            font-family: 'Syne', sans-serif;
+            font-size: 1.3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: var(--light);
+        }
+
+        .proj-overlay p {
+            color: var(--muted);
+            font-size: 14px;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+
+        .proj-links {
+            display: flex;
+            gap: 15px;
+        }
+
+        .proj-link-live,
+        .proj-link-code {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        .proj-link-live {
+            background: var(--primary);
+            color: white;
+        }
+
+        .proj-link-live:hover {
+            background: var(--primary-light);
+            transform: translateY(-2px);
+        }
+
+        .proj-link-code {
+            background: var(--dark2);
+            color: var(--light);
+            border: 1px solid var(--border);
+        }
+
+        .proj-link-code:hover {
+            background: var(--card);
+            border-color: var(--primary);
+            transform: translateY(-2px);
+        }
+
+        /* FILTER BUTTONS */
+        .filter-btns {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 40px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: none;
+            border: 1px solid var(--border);
+            color: var(--muted);
+            padding: 10px 20px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active,
+        .filter-btn:hover {
+            background: var(--primary);
+            color: white;
+            border-color: var(--primary);
+        }
+
+        /* REVEAL ANIMATION */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* SCROLLBAR */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--dark);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary);
+            border-radius: 5px;
+        }
+
+        /* Responsive for small mobiles */
+        @media(max-width: 480px) {
+            .container {
+                width: 95%;
+                padding: 0 10px;
+            }
+
+            #header {
+                padding: 15px 0;
+            }
+
+            .logo {
+                font-size: 1.2rem;
+            }
+
+            .logo-icon {
+                width: 30px;
+                height: 30px;
+                font-size: 14px;
+            }
+
+            .section-padding {
+                padding: 50px 0;
+            }
+
+            .section-title {
+                font-size: 2rem;
+                margin-bottom: 12px;
+            }
+
+            .project-card {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="cursor"></div>
+
+    <!-- HEADER -->
+    <header id="header">
+        <div class="container">
+            <a href="index.html" class="logo">
+                <div class="logo-icon"><i class="fas fa-code"></i></div>
+                <div class="logo-text">
+                    <span class="m">M</span><span class="dot">.</span><span class="h">H</span>
+                </div>
+            </a>
+            <button onclick="history.back()" class="back-btn">
+                <i class="fas fa-arrow-left"></i> Back
+            </button>
+        </div>
+    </header>
+
+    <!-- PORTFOLIO -->
+    <section id="portfolio" class="section-padding" style="background: var(--dark2);">
+        <div class="container">
+            <div class="section-header reveal">
+                <div class="section-label">My Work</div>
+                <h2 class="section-title">All <span class="tg">Projects</span></h2>
+                <p class="section-sub">Here are all my projects that I have worked on.</p>
+            </div>
+
+            <div class="filter-btns reveal">
+                <button class="filter-btn active">All</button>
+                <button class="filter-btn">Web Design</button>
+                <button class="filter-btn">Application</button>
+                <button class="filter-btn">Development</button>
+                <button class="filter-btn">UI/UX</button>
+            </div>
+
+            <div class="portfolio-grid">
+
+                <!-- Project 1: Gym Website -->
+                <div class="project-card reveal" data-category="web-design">
+                    <div class="proj-banner"
+                        style="background: linear-gradient(135deg, #1a0533 0%, #4a1080 50%, #7c3aed 100%);">
+                        <div class="proj-banner-icon">🏋️</div>
+                        <div class="proj-banner-title">Gym Website</div>
+                        <div class="proj-banner-tag">Web Design</div>
+                    </div>
+                    <div class="proj-overlay">
+                        <h4>Gym Website</h4>
+                        <p>HTML, CSS, JavaScript — Responsive fitness platform</p>
+                        <div class="proj-links">
+                            <a href="#" class="proj-link-live"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="#" class="proj-link-code"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2: Car Booking -->
+                <div class="project-card reveal" data-category="ui-ux">
+                    <div class="proj-banner"
+                        style="background: linear-gradient(135deg, #0c1445 0%, #1a3a8f 50%, #38bdf8 100%);">
+                        <div class="proj-banner-icon">🚗</div>
+                        <div class="proj-banner-title">Car Booking for Tour</div>
+                        <div class="proj-banner-tag">UI/UX Design</div>
+                    </div>
+                    <div class="proj-overlay">
+                        <h4>Car Booking for Tour</h4>
+                        <p>UI/UX Design, Full Coding — Travel booking platform</p>
+                        <div class="proj-links">
+                            <a href="https://masoomharis190-rgb.github.io/booking-tour/" target="_blank"
+                                class="proj-link-live"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="https://masoomharis190-rgb.github.io/booking-tour/" target="_blank"
+                                class="proj-link-code"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3: Construction Website -->
+                <div class="project-card reveal" data-category="development">
+                    <div class="proj-banner"
+                        style="background: linear-gradient(135deg, #1a1200 0%, #7a5200 50%, #f59e0b 100%);">
+                        <div class="proj-banner-icon">🏗️</div>
+                        <div class="proj-banner-title">Construction Website</div>
+                        <div class="proj-banner-tag">Development</div>
+                    </div>
+                    <div class="proj-overlay">
+                        <h4>Construction Website</h4>
+                        <p>HTML, SCSS, JS — Professional construction company site</p>
+                        <div class="proj-links">
+                            <a href="https://masoomharis190-rgb.github.io/constraction-website/" target="_blank"
+                                class="proj-link-live"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="https://masoomharis190-rgb.github.io/constraction-website/" target="_blank"
+                                class="proj-link-code"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4: E-commerce Website -->
+                <div class="project-card reveal" data-category="web-design">
+                    <div class="proj-banner"
+                        style="background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%);">
+                        <div class="proj-banner-icon">🛒</div>
+                        <div class="proj-banner-title">E-commerce Store</div>
+                        <div class="proj-banner-tag">Web Design</div>
+                    </div>
+                    <div class="proj-overlay">
+                        <h4>E-commerce Store</h4>
+                        <p>React, Node.js, MongoDB — Full-stack online shopping platform</p>
+                        <div class="proj-links">
+                            <a href="#" class="proj-link-live"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="#" class="proj-link-code"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5: Blog Platform -->
+                <div class="project-card reveal" data-category="development">
+                    <div class="proj-banner"
+                        style="background: linear-gradient(135deg, #064e3b 0%, #065f46 50%, #10b981 100%);">
+                        <div class="proj-banner-icon">📝</div>
+                        <div class="proj-banner-title">Blog Platform</div>
+                        <div class="proj-banner-tag">Development</div>
+                    </div>
+                    <div class="proj-overlay">
+                        <h4>Blog Platform</h4>
+                        <p>Next.js, Tailwind CSS — Modern blogging platform with CMS</p>
+                        <div class="proj-links">
+                            <a href="#" class="proj-link-live"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="#" class="proj-link-code"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 6: Chat Application -->
+                <div class="project-card reveal" data-category="application">
+                    <div class="proj-banner"
+                        style="background: linear-gradient(135deg, #7c2d12 0%, #9a3412 50%, #ea580c 100%);">
+                        <div class="proj-banner-icon">💬</div>
+                        <div class="proj-banner-title">Real-time Chat App</div>
+                        <div class="proj-banner-tag">Application</div>
+                    </div>
+                    <div class="proj-overlay">
+                        <h4>Real-time Chat App</h4>
+                        <p>Socket.io, Express, React — Real-time messaging application</p>
+                        <div class="proj-links">
+                            <a href="#" class="proj-link-live"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="#" class="proj-link-code"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 7: Weather App -->
+                <div class="project-card reveal" data-category="application">
+                    <div class="proj-banner"
+                        style="background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #3b82f6 100%);">
+                        <div class="proj-banner-icon">🌤️</div>
+                        <div class="proj-banner-title">Weather Dashboard</div>
+                        <div class="proj-banner-tag">Application</div>
+                    </div>
+                    <div class="proj-overlay">
+                        <h4>Weather Dashboard</h4>
+                        <p>JavaScript, API Integration — Weather forecasting application</p>
+                        <div class="proj-links">
+                            <a href="#" class="proj-link-live"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="#" class="proj-link-code"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 8: Task Manager -->
+                <div class="project-card reveal" data-category="application">
+                    <div class="proj-banner"
+                        style="background: linear-gradient(135deg, #581c87 0%, #7c3aed 50%, #a855f7 100%);">
+                        <div class="proj-banner-icon">📋</div>
+                        <div class="proj-banner-title">Task Manager</div>
+                        <div class="proj-banner-tag">Application</div>
+                    </div>
+                    <div class="proj-overlay">
+                        <h4>Task Manager</h4>
+                        <p>Vue.js, Firebase — Productivity app for task management</p>
+                        <div class="proj-links">
+                            <a href="#" class="proj-link-live"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="#" class="proj-link-code"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 9: Music Player -->
+                <div class="project-card reveal" data-category="application">
+                    <div class="proj-banner"
+                        style="background: linear-gradient(135deg, #dc2626 0%, #ef4444 50%, #f87171 100%);">
+                        <div class="proj-banner-icon">🎵</div>
+                        <div class="proj-banner-title">Music Player</div>
+                        <div class="proj-banner-tag">Application</div>
+                    </div>
+                    <div class="proj-overlay">
+                        <h4>Music Player</h4>
+                        <p>HTML, CSS, JavaScript — Web-based music streaming player</p>
+                        <div class="proj-links">
+                            <a href="#" class="proj-link-live"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="#" class="proj-link-code"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 10: Portfolio Website -->
+                <div class="project-card reveal" data-category="web-design">
+                    <div class="proj-banner"
+                        style="background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);">
+                        <div class="proj-banner-icon">💼</div>
+                        <div class="proj-banner-title">Portfolio Website</div>
+                        <div class="proj-banner-tag">Web Design</div>
+                    </div>
+                    <div class="proj-overlay">
+                        <h4>Portfolio Website</h4>
+                        <p>HTML, CSS, JavaScript — Creative developer portfolio</p>
+                        <div class="proj-links">
+                            <a href="#" class="proj-link-live"><i class="fas fa-external-link-alt"></i> Live Demo</a>
+                            <a href="#" class="proj-link-code"><i class="fab fa-github"></i> Code</a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <script>
+        // Custom Cursor
+        const cursor = document.querySelector('.cursor');
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // Reveal Animation
+        const reveals = document.querySelectorAll('.reveal');
+        const obs = new IntersectionObserver((entries) => {
+            entries.forEach(e => {
+                if (e.isIntersecting) {
+                    e.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+        reveals.forEach(el => obs.observe(el));
+
+        // Filter Buttons
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', () => {
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.textContent.trim().toLowerCase();
+                let categoryFilter = filter.replace(' ', '-').replace('/', '-');
+                const projects = document.querySelectorAll('.project-card');
+
+                projects.forEach(project => {
+                    const category = project.getAttribute('data-category');
+                    if (filter === 'all' || category === categoryFilter) {
+                        project.style.display = 'block';
+                    } else {
+                        project.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
